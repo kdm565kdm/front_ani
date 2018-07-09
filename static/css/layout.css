@@ -1,0 +1,266 @@
+body{
+	background-color:#CCC;
+}
+#container{
+	display:flex;
+	flex-direction:column;
+	padding:0px;
+	margin:0px;
+}
+
+
+.item{
+	width: 80%;
+}
+
+.waterfall{
+        -moz-column-count:1; /* Firefox */
+        -webkit-column-count:1; /* Safari 和 Chrome */
+        column-count:1;
+		column-gap:0;
+		-moz-column-gap:0;
+		-webkit-column-gap:0;
+		margin-left:25%;
+			  width:80%;
+    }
+
+    .item img{
+        width: 100%;
+        margin-bottom:10px;
+        border: 2px solid #333;
+        border-radius: 20px 20px;
+        box-shadow: 3px 3px 10px #444;
+    }
+
+#inner{margin-left:4%;}
+
+#inner *{margin-left:2%;}
+
+
+
+#left-side{
+	position: fixed;
+	width: 35%;
+	top: 12%;
+	left: 3%;
+}
+
+/*#camera{
+	display: none;
+}*/
+/*#now{
+	background-repeat: no-repeat;
+	margin-bottom:10px;
+    border-radius: 20px 20px;
+    box-shadow: 3px 3px 10px #444;
+}*/
+#image{
+	display: none;
+
+}
+
+#video{
+	/*width: 350px;*/
+	display: none;
+}
+#appear_video{
+	position: relative;
+	left: 125px;
+	width: 60%;
+}
+#canvas{
+	display: none;
+}
+#continue{
+	display: none;
+}
+.btn{
+	background: #bbb;
+	display:block;
+	z-index: 8;
+	width: 50%;
+	height: 55px;
+	margin-top: 10px;
+	font-size: 25px;
+	text-align: left;
+	border: 1px solid #000;
+	border-radius: 10px 10px;
+}
+.icon-user-camera{
+	display: block;
+	position: absolute;left: 0;z-index:5;
+
+	background-image: url('./icon/camera.png'); /*引入图片图片*/
+
+	background-repeat: no-repeat; /*设置图片不重复*/
+
+	background-position: 63px -5px; /*图片显示的位置*/
+
+	width: 220px; /*设置图片显示的宽*/
+
+	height: 50px; /*图片显示的高*/
+
+}
+
+.icon-user-add{
+	display: block;
+	position: absolute;left: 0;z-index:5;
+
+	background-image: url('./icon/eject.png'); /*引入图片图片*/
+
+	background-repeat: no-repeat; /*设置图片不重复*/
+
+	background-position: 63px -5px; /*图片显示的位置*/
+
+	width: 220px; /*设置图片显示的宽*/
+
+	height: 50px; /*图片显示的高*/
+}
+.icon-user-play{
+	display: block;
+	position: absolute;left: 0;z-index:5;
+
+	background-image: url('./icon/play.png'); /*引入图片图片*/
+
+	background-repeat: no-repeat; /*设置图片不重复*/
+
+	background-position: 63px -5px; /*图片显示的位置*/
+
+	width: 220px; /*设置图片显示的宽*/
+
+	height: 50px; /*图片显示的高*/
+}
+/*.speed{
+	width: 50%;
+	margin-top: 10px;
+	float: left;
+}
+.speed p{
+	display: inline;
+}*/
+#modal_set_frame .modal-content{
+	height: 100px;
+}
+#input_num{
+	margin-top: 5px;
+	margin-left: 6%;
+}
+input[type=range] {
+    -webkit-appearance: none;
+    width: 300px;
+    border-radius: 10px; /*这个属性设置使填充进度条时的图形为圆角*/
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+}    
+input[type=range]::-webkit-slider-runnable-track {
+    height: 15px;
+    border-radius: 10px; /*将轨道设为圆角的*/
+    box-shadow: 0 1px 1px #def3f8, inset 0 .125em .125em #0d1112; /*轨道内置阴影效果*/
+}
+input[type=range]:focus {
+    outline: none;
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 25px;
+    width: 25px;
+    margin-top: -5px; /*使滑块超出轨道部分的偏移量相等*/
+    background: #ffffff; 
+    border-radius: 50%; /*外观设置为圆形*/
+    border: solid 0.125em rgba(205, 224, 230, 0.5); /*设置边框*/
+    box-shadow: 0 .125em .125em #3b4547; /*添加底部阴影*/
+}
+.fps{
+	width: 80px;
+	height: 40px;
+	margin-top: 5px;
+	margin-left: 35%;
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+	background: white;
+	border-radius: 10px 10px; /*外观设置为圆形*/
+}
+#cancel_range_num_btn{
+	width: 60px;
+	height: 25px;
+	margin-bottom: 2px;
+}
+/*帧队列*/
+#queue{
+	width: 93%;
+	height: 50px;
+	overflow-y:hidden;
+    overflow-x:auto;
+    white-space: nowrap;
+	margin-top: 15px;
+	background: rgba(122,122,122,0.5);
+	border-radius: 10px 10px;
+	box-shadow: 3px 3px 10px #444;
+}
+#queue img{
+	display: inline-table;
+  	vertical-align: top;
+	width: 10%;
+	margin-top: 8px;
+	margin-left: 10px;
+	border-radius: 10px 10px;
+	box-shadow: 3px 3px 10px #444;
+}
+
+
+.modal{
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    background-color: rgba(0,0,0,0.5);
+}
+.modal-content{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    width: 50%;
+    max-width: 700px;
+    height: 40%;
+    max-height: 500px;
+    margin: 100px auto;
+    border-radius:10px;
+    background-color:#999;
+    -webkit-animation: zoom 0.6s;
+    animation: zoom 0.6s;
+    resize: both;
+    overflow: auto;
+}
+.modal-body .item img{
+    width: 50%;
+	margin-left:23%;
+	margin-top:3px;
+    margin-bottom:3px;
+}
+.modal-footer{
+    box-sizing:border-box;
+    display: flex;
+    justify-content: center;
+}
+.modal-footer button{
+    width: 50px;
+    height: 25px;
+    padding: 5px;
+    margin-right: 10px;
+    font-size: 5px;
+    color: white;
+    border-radius: 5px;
+    background-color: cornflowerblue;
+}
+#del{
+	background: red;
+}
+.modal-footer button:hover, .modal-footer button:focus{
+    background-color: #95b4ed;
+    cursor: pointer;
+}
