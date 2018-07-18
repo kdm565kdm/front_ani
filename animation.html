@@ -16,7 +16,6 @@
     <br>
 
 	<div id="left-side">
-		<div><p>当前张数：<span id='current_page'>0</span></p></div>
 		<button id="photo" class='btn'><i class="icon-user-camera"></i>拍摄</button>
 		<button id="continue" class='btn'><i class="icon-user-add"></i>继续</button>
 		<button id="set_frame" class='btn'>设置帧率</button>
@@ -29,7 +28,8 @@
     <div class="waterfall">
     	
 		<div>
-			<video id="video" autoplay  style='width:1280px;height:720px'></video>
+	<div><p>当前张数：<span id='current_page'>0</span></p></div>		
+	<video id="video" autoplay  style='width:1280px;height:720px'></video>
 			<video  id="appear_video" autoplay></video>
 			
 		</div>
@@ -124,7 +124,6 @@
 	</div>
 </div>
 	<div id="after">
-	    <p>扣过后：</p>
 	    <div class="img-container" id="outer-canvas">
 	        <canvas id="my-canvas" width="800" height="450"></canvas>
 	    </div>

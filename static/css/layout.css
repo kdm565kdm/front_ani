@@ -273,7 +273,9 @@ input[type=range]::-webkit-slider-thumb {
 
 
 }
-
+#after{
+	display: none;
+}
 #fin{
 	display: none;
 
