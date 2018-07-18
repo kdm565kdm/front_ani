@@ -264,3 +264,17 @@ input[type=range]::-webkit-slider-thumb {
     background-color: #95b4ed;
     cursor: pointer;
 }
+
+
+
+
+#my-canvas{
+	display: none;
+
+
+}
+
+#fin{
+	display: none;
+
+}

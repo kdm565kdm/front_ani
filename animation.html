@@ -3,23 +3,25 @@
 <head>
 <meta charset="utf-8">
 <title>定格动画手机端DEMO</title>
-<link rel="stylesheet" type="text/css" href="./static/css/layout.css">
-<script src="./static/js/frames/jquery-3.1.0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="static/css/layout.css">
+<script src="static/js/jspdf.min.js"></script>
+<!-- <script src="/static/js/frames/jquery-3.1.0.min.js"></script> -->
 <meta name="viewport" content="device-width, initial-scale=1">
-</style>
 </head>
 
 <body>
 <div id="container">
     <br>
     <br>
+
 	<div id="left-side">
-		
+		<div><p>当前张数：<span id='current_page'>0</span></p></div>
 		<button id="photo" class='btn'><i class="icon-user-camera"></i>拍摄</button>
 		<button id="continue" class='btn'><i class="icon-user-add"></i>继续</button>
 		<button id="set_frame" class='btn'>设置帧率</button>
 		<button id="relay_photo" class='btn'>延迟摄影</button>
 		<button id="play" class='btn'><i class="icon-user-play"></i>播放</button>
+		<button id="set_cover" class='btn'>封面设置</button>
 		<!-- <button id="tanslate" class='btn'>合成</button> -->
 	</div>
 
@@ -94,6 +96,35 @@
 		</footer>
 	</div>
 </div>
-<script src='./static/js/init.js'></script>
+<div id="cover" class="modal">
+	<div class="modal-content">
+
+		<div class="modal-body">
+			片名：<input type="text" id='title'/>
+			<br>
+			导演：<input type="text" id='editor'/>
+		</div>
+		<footer class="modal-footer">
+
+			<button id="tanslate" class='btn'>生成</button>
+			
+		</footer>
+	</div>
+</div>
+
+	<div id="after">
+	    <p>扣过后：</p>
+	    <div class="img-container" id="outer-canvas">
+	        <canvas id="my-canvas" width="800" height="450"></canvas>
+	    </div>
+	</div>
+
+<div id="fin">
+    <p>输出</p>
+    <div class="img-container" id="out">
+        <canvas id="a4_out" width="2480" height="3508"></canvas>
+    </div>
+</div>
+<script src='static/js/init.js'></script>
 </body>  
 </html>
