@@ -52,7 +52,10 @@ var global_width=0;
 var global_height=0;
 var pdf = new jsPDF('', 'pt', 'a4');
 
-        var exArray = []; //存储设备源ID
+var per=0;
+var per_div=document.getElementById('per');
+var percent=document.getElementById('percent');
+percent.style.display='none';
   if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     navigator.mediaDevices.getUserMedia({ video: 
 	 {facingMode: { exact: "environment" }},
@@ -167,8 +170,9 @@ set_cover.onclick=function(){
 translate.onclick=function(){
 
 	var i=0;
-	onImageLoad(i);
 	cover.style.display='none';
+	percent.style.display='block';
+	onImageLoad(i);
 
 };
 // $(document).ready(function(){
@@ -375,13 +379,15 @@ function mregeBackground(i,len){
 
 }
 function mergeImages(i,j,x,y){
-
+		per_div.innerHTML=per;
+		per+=1.5;
 		if(frames[i]===undefined){
 			var pageData=output.toDataURL('image/jpeg'); //转换图片为dataURL
 			results.push(pageData);
 			
 			// console.log('print pdf document');
-
+			per=100;
+			per_div.innerHTML=per;
 			//addImage后两个参数控制添加图片的尺寸，此处将页面高度按照a4纸宽高比列进行压缩
 			pdf.addImage(pageData, 'JPEG', 0, 0, 595.28, 592.28/output.width * output.height );
 			//pdf.save('stone.pdf');
@@ -450,6 +456,7 @@ function setCover(){
 		octx.fillText(time,230,740);
 		pdf.addPage();
 		var pageData=output.toDataURL('image/jpeg');
+		percent.style.display='none';
 		pdf.addImage(pageData, 'JPEG', 0, 0, 595.28, 592.28/output.width * output.height);
 		pdf.save('test.pdf');
 
