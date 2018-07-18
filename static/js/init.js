@@ -51,26 +51,30 @@ var modal = document.getElementById('modal');
 var global_width=0;
 var global_height=0;
 var pdf = new jsPDF('', 'pt', 'a4');
+
+        var exArray = []; //存储设备源ID
+  if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    navigator.mediaDevices.getUserMedia({ video: 
+	 {facingMode: { exact: "environment" }},
+	 mandatory: {
+	    minWidth: 1280,
+	     minHeight: 720 
+	 }  }).then(function(stream) {
+
+      console.log(stream);
+ 
+//      mediaStreamTrack = typeof stream.stop === 'function' ? stream : stream.getTracks()[1];
+    appear_video.src = (window.URL || window.webkitURL).createObjectURL(stream);
+    appear_video.play();
+    video.src = (window.URL || window.webkitURL).createObjectURL(stream);
+    video.play();   
+ }).catch(function(err) {
+      console.log(err);
+    })
+  }
 //连接摄像头
-var camera_par={ video: { facingMode: { exact: "environment" } } };
-//var camera_par={ video:{ width: 640, height: 426 } };
-getUserMedia(camera_par,success,error);
+var camera_par={ "video": true };
 //访问用户媒体设备的兼容方法
-function getUserMedia(constrains,success,error){
-    if(navigator.mediaDevices.getUserMedia){
-        //最新标准API
-        navigator.mediaDevices.getUserMedia(constrains).then(success).catch(error);
-    } else if (navigator.webkitGetUserMedia){
-        //webkit内核浏览器
-        navigator.webkitGetUserMedia(constrains).then(success).catch(error);
-    } else if (navigator.mozGetUserMedia){
-        //Firefox浏览器
-        navagator.mozGetUserMedia(constrains).then(success).catch(error);
-    } else if (navigator.getUserMedia){
-        //旧版API
-        navigator.getUserMedia(constrains).then(success).catch(error);
-    }
-}
 //成功的回调函数
 function success(stream){
     //兼容webkit内核浏览器
@@ -82,18 +86,6 @@ function success(stream){
     //video.play();
 }
 
-//异常的回调函数
-function error(error){
-    console.log("访问用户媒体设备失败：",error.name,error.message);
-}
-if (navigator.mediaDevices.getUserMedia || navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia){
-    //调用用户媒体设备，访问摄像头
-    getUserMedia({
-        video:{width:480,height:320}
-    },success,error);
-} else {
-    alert("你的浏览器不支持访问用户媒体设备");
-}
 
 document.onkeyup = function (e) {//按键信息对象以函数参数的形式传递进来了，就是那个e
     var code = e.charCode || e.keyCode;  //取出按键信息中的按键代码(大部分浏览器通过keyCode属性获取按键代码，但少部分浏览器使用的却是charCode)
@@ -164,12 +156,12 @@ continue_btn.onclick=function(){
 	continue_btn.style.display='none';
 };
 set_cover.onclick=function(){
-	if (photos.length<70) {
-		alert('请排满70张再合成！！当前张数为：'+photos.length);
-	}else{
-		cover.style.display='block';
-	}
-	//cover.style.display='block';
+	//if (photos.length<70) {
+	//	alert('请排满70张再合成！！当前张数为：'+photos.length);
+	//}else{
+	//	cover.style.display='block';
+	//}
+	cover.style.display='block';
 	
 };
 translate.onclick=function(){
@@ -448,7 +440,7 @@ function setCover(){
 	octx.fillRect(0,0,2480,3508);
 	octx.globalCompositeOperation="source-over";
 	var cover=new Image;
-	cover.src='/static/cover.jpg';
+	cover.src='static/cover.jpg';
 	cover.addEventListener('load', function(event) {
 		octx.drawImage(cover,0,150,width,height);
 		octx.font = "italic 60px 黑体";
