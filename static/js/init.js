@@ -9,6 +9,7 @@ var relay_btn=document.getElementById('relay_btn');
 var relay_div=document.getElementById('relay');
 var Countdown=document.getElementById('Countdown');
 var intetval=document.getElementById('intetval');
+var relay_cancel=document.getElementById("relay_cancel");
 
 var play_btn=document.getElementById("play");
 var continue_btn=document.getElementById("continue");
@@ -21,13 +22,24 @@ var photo=document.getElementById("photo");
 var current_page=document.getElementById("current_page");
 var image_div=document.getElementById("image");
 
+var zip=document.getElementById("zip");
 var queue=document.getElementById("queue");
 
 var photos=[];
 
 var frames=[];
 var results=[];
-
+var xml={
+	"sequence":{
+		"width":1920,
+		"height":1080,
+		"fps":24,
+		"totalFrames":48,
+		"isLoop":"0", 
+		"isRegister":"1",
+		"frames":[]
+	}
+};
 var second=1000;
 var speed=41;//1000/24~41一秒二十四帧
 
@@ -57,20 +69,15 @@ var per_div=document.getElementById('per');
 var percent=document.getElementById('percent');
 percent.style.display='none';
   if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-    navigator.mediaDevices.getUserMedia({ video: 
-	 {facingMode: { exact: "environment" }},
-	 mandatory: {
-	    minWidth: 1280,
-	     minHeight: 720 
-	 }  }).then(function(stream) {
+    navigator.mediaDevices.getUserMedia({ video:{facingMode: { exact: "environment" }}}).then(function(stream) {
 
       console.log(stream);
  
-//      mediaStreamTrack = typeof stream.stop === 'function' ? stream : stream.getTracks()[1];
+
     appear_video.src = (window.URL || window.webkitURL).createObjectURL(stream);
-    appear_video.play();
+    //appear_video.play();
     video.src = (window.URL || window.webkitURL).createObjectURL(stream);
-    video.play();   
+    //video.play();   
  }).catch(function(err) {
       console.log(err);
     })
@@ -79,15 +86,15 @@ percent.style.display='none';
 var camera_par={ "video": true };
 //访问用户媒体设备的兼容方法
 //成功的回调函数
-function success(stream){
-    //兼容webkit内核浏览器
-    var CompatibleURL = window.URL || window.webkitURL;
-    //将视频流设置为video元素的源
-	appear_video.src = CompatibleURL.createObjectURL(stream);
-	video.src = CompatibleURL.createObjectURL(stream);
-    //播放视频
-    //video.play();
-}
+// function success(stream){
+//     //兼容webkit内核浏览器
+//     var CompatibleURL = window.URL || window.webkitURL;
+//     //将视频流设置为video元素的源
+// 	appear_video.src = CompatibleURL.createObjectURL(stream);
+// 	video.src = CompatibleURL.createObjectURL(stream);
+//     //播放视频
+//     //video.play();
+// }
 
 
 document.onkeyup = function (e) {//按键信息对象以函数参数的形式传递进来了，就是那个e
@@ -110,12 +117,13 @@ range_num.onclick=function(){
 };
 cancel_range_num_btn.onclick=function(){
 	modal_set_frame.style.display='none';
+	xml.sequence.fps=parseInt(input_num.value);
 };
 
 
-cancel_btn.onclick=function(){
-	modal.style.display='none';
-};
+// cancel_btn.onclick=function(){
+// 	modal.style.display='none';
+// };
 del_btn.onclick=function(){
 	var id=this.getAttribute('del-src');
 	var del_frame=document.getElementById(id);
@@ -141,6 +149,10 @@ relay_btn.onclick=function(){
 	relay_camera(count_time,intetval_time);
 
 };
+relay_cancel.onclick=function(){
+	relay_div.style.display='none';
+};
+
 
 play_btn.onclick=function(){
 	appear_video.style.display='none';
@@ -175,11 +187,34 @@ translate.onclick=function(){
 	onImageLoad(i);
 
 };
-// $(document).ready(function(){
-// 	translate.onclick=function(){
-// 		upload_to_server_to_merge();
-// 	};
-// });
+
+
+
+
+
+zip.onclick=function(){
+	var i;
+	var len;
+	var src;
+	len=photos.length;
+    var fps=xml.sequence.fps.toString();
+    var totalFrames=xml.sequence.totalFrames.toString();
+    var xmlDoc="<sequence width=\"1920\" height=\"1080\" fps="+fps+" totalFrames="+totalFrames+" isLoop=\"0\" isRegister=\"1\">";
+	console.log(xmlDoc);
+	for(i=0; i<len; i++){
+		if(i<=9){
+			var url="00"+i.toString()+".jpg";
+		}else{
+			var url="0"+i.toString()+".jpg";
+		}
+		var fragent="<frame url=\""+url+"\" alpha=\"1\"/>";
+		xmlDoc+='\n'+fragent;
+		
+		console.log(src);
+	}
+	xmlDoc+="\n</sequence>";
+	console.log(xmlDoc);
+};
 
 function catch_image(){
     context.drawImage(video, 0, 0, 1280,720);
@@ -194,7 +229,7 @@ function catch_image(){
 		var frame_img=document.createElement("img");
 		frame_img.setAttribute('src',this.getAttribute('src'));
 		frame.appendChild(frame_img);
-		modal.style.display='block';
+		//modal.style.display='block';
 		
 		del_btn.setAttribute('del-src',this.id);
 
@@ -204,6 +239,7 @@ function catch_image(){
 	queue.appendChild(img);
 	photos.push(img);
 	current_page.innerHTML=photos.length;
+	xml.sequence.totalFrames=photos.length;
 }
 //预览播放
 function play(speed){
@@ -494,52 +530,4 @@ function getNowDate() {
 	 var currentdate = year + sign1 + month + sign1 + day + " " + hour + sign2 + minutes + sign2 + seconds + " " + week;
 	 return currentdate;
 }
-// function upload_to_server_to_merge(){
-// 		var frame=parseInt(input_num.value);
-// 		//var updatas=[];
-// 		var frame={
-// 			'frame_per_second':frame
-// 		}
-// 		for(var i=0, len=photos.length; i<len; i++){
-// 			var tem_img=photos[i].getAttribute('src');
-// 			var post_data = {
-// 			    'image':tem_img   
-// 			};
-// 		    $.ajax({
-// 		        url:'/animation/',
-// 		        type:'POST',
-// 		        data:post_data, 
-// 		        async:true,    //或false,是否异步
-// 		        dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-// 		        success:function(data){
-// 		       		//console.log(data);
 
-
-// 		        },
-// 		        error:function(){
-// 		            console.log("error");
-// 		        }
-
-// 		    });
-
-// 		}
-// 		var post_data = {
-// 		    'frame_per_second':frame
-// 		};
-// 	    $.ajax({
-// 	        url:'/animation/',
-// 	        type:'POST',
-// 	        data:frame, 
-// 	        async:true,    //或false,是否异步
-// 	        dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-// 	        success:function(data){
-	       		
-// 	       		window.location.href='http://127.0.0.1:8000/upload/';
-
-// 	        },
-// 	        error:function(){
-// 	            console.log("error");
-// 	        }
-
-// 	    });
-// }

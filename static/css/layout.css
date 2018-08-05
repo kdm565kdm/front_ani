@@ -1,5 +1,5 @@
 body{
-	background-color:#CCC;
+	background-color:rgb(204,204,204);
 }
 #container{
 	display:flex;
@@ -21,7 +21,7 @@ body{
 		-moz-column-gap:0;
 		-webkit-column-gap:0;
 		margin-left:25%;
-			  width:80%;
+		width:80%;
     }
 
     .item img{
@@ -37,36 +37,45 @@ body{
 #inner *{margin-left:2%;}
 
 
-
 #left-side{
 	position: fixed;
-	width: 35%;
-	top: 12%;
+	top: 5%;
 	left: 3%;
 }
+#left-side ul{
+	margin-left: -30%;
+}
+#left-side ul li{
+	list-style:none;
+}
+#right-side{
+	background: rgb(238,238,238);
+	position: fixed;
+	top: 1%;
+	right: 6%;
+	padding: 5px 10px 10px 10px;
+	border: 2px solid #111;
+	border-radius: 10px 10px;
+}
+#right-side ul{
+	list-style:none;
+	padding:  0 0 0 0;
+	margin: 0 0 0 0;
+}
 
-/*#camera{
-	display: none;
-}*/
-/*#now{
-	background-repeat: no-repeat;
-	margin-bottom:10px;
-    border-radius: 20px 20px;
-    box-shadow: 3px 3px 10px #444;
-}*/
 #image{
 	display: none;
 
 }
 
 #video{
-	/*width: 350px;*/
+	
 	display: none;
 }
 #appear_video{
-	position: relative;
-	left: 125px;
-	width: 60%;
+	position: absolute;
+	left: 210px;
+	width: 50%;
 }
 #canvas{
 	display: none;
@@ -75,16 +84,22 @@ body{
 	display: none;
 }
 .btn{
-	background: #bbb;
+	background: -webkit-linear-gradient(left top,rgb(255,152,0), rgb(248,139,0)); /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(bottom right,rgb(255,152,0), rgb(248,139,0)); /* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(bottom right,rgb(255,152,0), rgb(248,139,0)); /* Firefox 3.6 - 15 */
+	background: linear-gradient(bottom right,rgb(255,152,0), rgb(248,139,0)); /* 标准的语法 */
 	display:block;
 	z-index: 8;
-	width: 50%;
-	height: 55px;
+
+	height: 80px;
+	width: 80px;
 	margin-top: 10px;
-	font-size: 25px;
+
+	font-size: 15px;
 	text-align: left;
 	border: 1px solid #000;
 	border-radius: 10px 10px;
+	box-shadow: 2px 2px 15px;
 }
 .icon-user-camera{
 	display: block;
@@ -98,7 +113,7 @@ body{
 
 	width: 220px; /*设置图片显示的宽*/
 
-	height: 50px; /*图片显示的高*/
+	height: 20px; /*图片显示的高*/
 
 }
 
@@ -130,14 +145,31 @@ body{
 
 	height: 50px; /*图片显示的高*/
 }
-/*.speed{
-	width: 50%;
-	margin-top: 10px;
-	float: left;
+
+.thumb{
+	width: 150px;
+	height: 75px;
+	margin-bottom: 10px;
 }
-.speed p{
-	display: inline;
-}*/
+.thumb img{
+	
+	width: 90%;
+	border: 2px solid white;
+	border-radius: 10px 10px;
+	background: -webkit-linear-gradient(rgb(231,231,231), rgb(167,167,167)); /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(rgb(231,231,231), rgb(167,167,167)); /* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(rgb(231,231,231), rgb(167,167,167)); /* Firefox 3.6 - 15 */
+	background: linear-gradient(rgb(231,231,231), rgb(167,167,167)); /* 标准的语法 */
+}
+.pages{
+	width: 135px;
+	border: 1px solid black;
+	border-radius: 10px 10px;
+	background: -webkit-linear-gradient(rgb(231,231,231), rgb(167,167,167)); /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(rgb(231,231,231), rgb(167,167,167)); /* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(rgb(231,231,231), rgb(167,167,167)); /* Firefox 3.6 - 15 */
+	background: linear-gradient(rgb(231,231,231), rgb(167,167,167)); /* 标准的语法 */ 
+}
 #modal_set_frame .modal-content{
 	height: 100px;
 }
@@ -189,13 +221,19 @@ input[type=range]::-webkit-slider-thumb {
 }
 /*帧队列*/
 #queue{
+	z-index: 1;
+	position: fixed;
+	bottom: 0px;
 	width: 93%;
-	height: 50px;
+	height: 105px;
 	overflow-y:hidden;
     overflow-x:auto;
     white-space: nowrap;
 	margin-top: 15px;
-	background: rgba(122,122,122,0.5);
+	background: -webkit-linear-gradient(rgb(231,231,231), rgb(167,167,167)); /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(rgb(231,231,231), rgb(167,167,167)); /* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(rgb(231,231,231), rgb(167,167,167)); /* Firefox 3.6 - 15 */
+	background: linear-gradient(rgb(231,231,231), rgb(167,167,167)); /* 标准的语法 */
 	border-radius: 10px 10px;
 	box-shadow: 3px 3px 10px #444;
 }

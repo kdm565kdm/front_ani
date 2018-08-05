@@ -6,7 +6,7 @@
 <link rel="stylesheet" type="text/css" href="static/css/layout.css">
 <script src="https://cdn.bootcss.com/vConsole/3.2.0/vconsole.min.js"></script>
 <script src="static/js/jspdf.min.js"></script>
-<!-- <script src="/static/js/frames/jquery-3.1.0.min.js"></script> -->
+<script src="static/js/frames/jquery-3.1.0.min.js"></script>
 <meta name="viewport" content="device-width, initial-scale=1">
 </head>
 
@@ -15,20 +15,35 @@
     <br>
     <br>
 
-	<div id="left-side">
-		<button id="photo" class='btn'><i class="icon-user-camera"></i>拍摄</button>
-		<button id="continue" class='btn'><i class="icon-user-add"></i>继续</button>
-		<button id="set_frame" class='btn'>设置帧率</button>
-		<button id="relay_photo" class='btn'>延迟摄影</button>
-		<button id="play" class='btn'><i class="icon-user-play"></i>播放</button>
-		<button id="set_cover" class='btn'>封面设置</button>
-		<!-- <button id="tanslate" class='btn'>合成</button> -->
+    <div id="left-side">
+		<div class="thumb" id="frame"></div>
+		<div class="pages">
+			<p>当前张数：<span id='current_page'>0</span></p>
+		</div>
+		<ul>
+			<li><button class='btn' id="del">删除</button></li>
+			<li><button class='btn' id="zip">打包</button></li>	
+			<li><button class='btn'>抠像</button></li>
+		</ul>
+    </div>
+	<div id="right-side">
+		<ul>
+			<li><button id="photo" class='btn'>拍摄</button></li>
+			<li><button id="continue" class='btn'>继续</button></li>
+			<li><button id="set_frame" class='btn'>设置帧率</button></li>
+			<li><button id="relay_photo" class='btn'>延迟摄影</button></li>
+			<li><button id="play" class='btn'>播放</button></li>
+			<li><button id="set_cover" class='btn'>翻翻书</button></li>
+			
+		</ul>
+				
+		
 	</div>
 
     <div class="waterfall">
     	
 		<div>
-	<div><p>当前张数：<span id='current_page'>0</span></p></div>		
+		
 	<video id="video" autoplay  style='width:1280px;height:720px'></video>
 			<video  id="appear_video" autoplay></video>
 			
@@ -49,7 +64,7 @@
 
 </div>
 <!--frame div-->
-<div id="modal" class="modal">
+<!-- <div id="modal" class="modal">
 	<div class="modal-content">
 
 		<div class="modal-body">
@@ -62,7 +77,7 @@
 			
 		</footer>
 	</div>
-</div>
+</div> -->
 <!--set_frame div-->
 <div id="modal_set_frame" class="modal">
 	<div class="modal-content">
@@ -93,7 +108,7 @@
 		<footer class="modal-footer">
 
 			<button id="relay_btn">开始</button>
-			
+			<button id="relay_cancel">取消</button>
 		</footer>
 	</div>
 </div>
@@ -135,9 +150,7 @@
         <canvas id="a4_out" width="2480" height="3508"></canvas>
     </div>
 </div>
-<script type="text/javascript">
-	var vConsole = new VConsole();
-</script>
+
 <script src='static/js/init.js'></script>
 </body>  
 </html>
