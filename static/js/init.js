@@ -71,8 +71,8 @@ percent.style.display='none';
 
 var audio_btn=document.getElementById("audio");
 var stop_audio=document.getElementById("stop_audio");
-//var media={ video:{facingMode: { exact: "environment" }}};
-var media={ video:true};
+var media={ video:{facingMode: { exact: "environment" }}};
+//var media={ video:true};
 connectMachine(media);
 
 
