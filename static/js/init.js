@@ -68,22 +68,14 @@ var per=0;
 var per_div=document.getElementById('per');
 var percent=document.getElementById('percent');
 percent.style.display='none';
-  if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-    navigator.mediaDevices.getUserMedia({ video:{facingMode: { exact: "environment" }}}).then(function(stream) {
 
-      console.log(stream);
- 
+var audio_btn=document.getElementById("audio");
+var stop_audio=document.getElementById("stop_audio");
+//var media={ video:{facingMode: { exact: "environment" }}};
+var media={ video:true};
+connectMachine(media);
 
-    appear_video.src = (window.URL || window.webkitURL).createObjectURL(stream);
-    //appear_video.play();
-    video.src = (window.URL || window.webkitURL).createObjectURL(stream);
-    //video.play();   
- }).catch(function(err) {
-      console.log(err);
-    })
-  }
-//连接摄像头
-var camera_par={ "video": true };
+
 //访问用户媒体设备的兼容方法
 //成功的回调函数
 // function success(stream){
@@ -188,8 +180,20 @@ translate.onclick=function(){
 
 };
 
-
-
+audio_btn.onclick=function(){
+	// media={ video:true,audio: true};
+	// connectMachine(media);
+	startRecording();
+	this.style.display="none";
+	stop_audio.style.display="block";
+};
+stop_audio.onclick=function(){
+	send();
+	stop_audio.style.display="none";
+	document.getElementById("audio").style.display="block";
+	// media={ video:true};
+	// connectMachine(media);
+};
 
 
 zip.onclick=function(){
@@ -531,3 +535,21 @@ function getNowDate() {
 	 return currentdate;
 }
 
+function connectMachine(media){
+  if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    navigator.mediaDevices.getUserMedia(media).then(function(stream) {
+
+
+ 
+
+    appear_video.src = (window.URL || window.webkitURL).createObjectURL(stream);
+    //appear_video.play();
+    video.src = (window.URL || window.webkitURL).createObjectURL(stream);
+    //video.play();   
+ }).catch(function(err) {
+      console.log(err);
+    })
+  }
+}
+
+//连接摄像头

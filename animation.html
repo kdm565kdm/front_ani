@@ -11,6 +11,7 @@
 </head>
 
 <body>
+<audio controls autoplay></audio> 
 <div id="container">
     <br>
     <br>
@@ -23,10 +24,16 @@
 		<ul>
 			<li><button class='btn' id="del">删除</button></li>
 			<li><button class='btn' id="zip">打包</button></li>	
-			<li><button class='btn'>抠像</button></li>
+			<li><button class="btn" id="audio">录音</button></li>
+			<li><button class="btn" id="stop_audio">停止</button></li>
 		</ul>
+
     </div>
 	<div id="right-side">
+		<ul class="messages">
+
+      
+    	</ul>
 		<ul>
 			<li><button id="photo" class='btn'>拍摄</button></li>
 			<li><button id="continue" class='btn'>继续</button></li>
@@ -150,7 +157,8 @@
         <canvas id="a4_out" width="2480" height="3508"></canvas>
     </div>
 </div>
-
+<script src='static/js/recoder.js'></script>
 <script src='static/js/init.js'></script>
+<script src='static/js/main.js'></script>
 </body>  
 </html>
