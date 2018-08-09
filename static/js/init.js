@@ -547,6 +547,8 @@ function connectMachine(media){
     video.src = (window.URL || window.webkitURL).createObjectURL(stream);
     //video.play();   
  }).catch(function(err) {
+ 	  media={ video:true};
+ 	  connectMachine(media);
       console.log(err);
     })
   }
