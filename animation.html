@@ -19,7 +19,7 @@
     <div id="left-side">
 		<div class="thumb" id="frame"></div>
 		<div class="pages">
-			<p>当前张数：<span id='current_page'>0</span></p>
+			<p>当前帧数：<span id='current_page'>0</span></p>
 		</div>
 		<ul>
 			<li><button class='btn' id="del">删除</button></li>
@@ -156,6 +156,22 @@
     <div class="img-container" id="out">
         <canvas id="a4_out" width="2480" height="3508"></canvas>
     </div>
+</div>
+
+<div id="audio_div" class="modal">
+	<div class="modal-content">
+
+		<div class="modal-body">
+			开始帧：<input type="number" id='start_frame' placeholder="1"/>
+			<br>
+			结束帧：<input type="number" id='end_frame' placeholder="1"/>
+		</div>
+		<footer class="modal-footer">
+			<button id="audio_play">播放</button>
+			<button id="audio_check">确定</button>
+			<button id="audio_cancel">取消</button>
+		</footer>
+	</div>
 </div>
 <script src='static/js/recoder.js'></script>
 <script src='static/js/init.js'></script>

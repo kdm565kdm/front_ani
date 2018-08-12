@@ -71,6 +71,12 @@ percent.style.display='none';
 
 var audio_btn=document.getElementById("audio");
 var stop_audio=document.getElementById("stop_audio");
+var audio_div=document.getElementById("audio_div");
+var audio_check=document.getElementById("audio_check");
+var audio_cancel=document.getElementById("audio_cancel");
+var start_frame=document.getElementById("start_frame");
+var end_frame=document.getElementById("end_frame");
+
 var media={ video:{facingMode: { exact: "environment" }}};
 //var media={ video:true};
 connectMachine(media);
@@ -194,7 +200,10 @@ stop_audio.onclick=function(){
 	// media={ video:true};
 	// connectMachine(media);
 };
+audio_cancel.onclick=function(){
+	audio_div.style.display="none";
 
+};
 
 zip.onclick=function(){
 	var i;
@@ -252,16 +261,31 @@ function play(speed){
 	var i=0;
 	var len=photos.length;
 	var file=photos[i];
+	//playRecord(msg[1].blob);
 	cicle_show_image(i,len,speed);
 
 }
-
+var k=1;
 //循环展示图片
 function cicle_show_image(i,len){
 	if(i>=len){
+		k=1;
 		return;
 	}
 	var img=photos[i];
+	
+	if(typeof(msg[k])!=='undefined'){
+		if(msg[k]["start"]==(i+1)){
+			playRecord(msg[k].blob);
+
+		}else if(msg[k]["end"]==(i+1)){
+			stopRecord();
+			k++;
+		}
+	}
+
+
+
 
 	image_div.setAttribute("src",img.getAttribute('src'));
 

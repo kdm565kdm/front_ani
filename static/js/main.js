@@ -66,18 +66,41 @@
                }
                 msg[msgId]=data;
                 recorder.clear();
-                console.log(data);
+                msg[msgId]["start"]=1;
+                msg[msgId]["end"]=parseInt(photos.length);
                 var dur=data.duration/10;
                  var str="<div class='warper'><div id="+msgId+" class='voiceItem'>"+dur+"s</div></div>"
                 $(".messages").append(str);
+                //audio_datas.push(data);
                 msgId++;
             }
             
             $(document).on("click",".voiceItem",function(){
                 var id=$(this)[0].id;
                 var data=msg[id];
+                
+                $("#audio_play").on("click",function(){
+                    playRecord(data.blob);
+                });
+                audio_div.style.display="block";
+                $("#audio_check").on("click",function(){
+                  var start=parseInt(start_frame.value);
+                  //start_frame.value=start;
+                  // start_frame.placeholder=1;
 
-                playRecord(data.blob);
+                  
+                  var end=parseInt(end_frame.value);
+                  // end_frame.value=parseInt(photos.length);
+                  // end_frame.placeholder=end;
+                  data["start"]=start;
+                  data["end"]=end;
+                  
+                  audio_div.style.display="none";
+                  $("#audio_check").off();
+                });
+
+                
+                
             })
 
             var ct;

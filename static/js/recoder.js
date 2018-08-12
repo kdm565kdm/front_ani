@@ -21,7 +21,7 @@
         audioInput.connect(volume);  
   
 context.onstatechange = function() {
-  console.log("state",context.state);
+  //console.log("state",context.state);
 }
         //创建缓存，用来缓存声音  
         var bufferSize = 4096;  
@@ -132,7 +132,7 @@ context.onstatechange = function() {
         this.stop = function () {  
             recorder.disconnect();  
             //清理缓存音频
-            console.log("stoped",audioData.buffer.length)
+            //console.log("stoped",audioData.buffer.length)
             return audioData.buffer.length;
         };  
   
@@ -152,7 +152,7 @@ context.onstatechange = function() {
         //回放  
         this.play = function (audio,blob) {
             blob=blob||this.getBlob().blob;
-            console.log(blob);
+            //console.log(blob);
             audio.src = window.URL.createObjectURL(blob);  
         };  
   
@@ -167,7 +167,7 @@ context.onstatechange = function() {
     };  
     //抛出异常  
     HZRecorder.throwError = function (message) {  
-        console.error(message);
+        //console.error(message);
     };  
     //是否支持录音  
     HZRecorder.canRecording =!!navigator.getUserMedia;  
