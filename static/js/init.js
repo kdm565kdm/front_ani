@@ -169,6 +169,10 @@ del_btn.onclick=function(){
 	// photos=del_ele_in_array(photos,str);
 
 	current_page.innerHTML=photos.length;
+	if (photos.length==0) {
+		image_div.style.display='none';
+		appear_video.style.display="block";
+	}
 	del_btn.style.display='none';
 };
 
