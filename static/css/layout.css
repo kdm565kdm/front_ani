@@ -69,7 +69,11 @@ body{
 
 #image{
 	display: none;
-
+	width: 50%;
+	height: 60%;
+	border-radius: 10px 10px;
+	position: absolute;
+	left: 20%;
 }
 
 #video{
@@ -93,7 +97,7 @@ body{
 	background: -moz-linear-gradient(bottom right,rgb(255,152,0), rgb(248,139,0)); /* Firefox 3.6 - 15 */
 	background: linear-gradient(bottom right,rgb(255,152,0), rgb(248,139,0)); /* 标准的语法 */
 	display:block;
-	z-index: 8;
+	z-index: 99;
 
 	height: 80px;
 	width: 80px;
@@ -104,6 +108,13 @@ body{
 	border: 1px solid #000;
 	border-radius: 10px 10px;
 	box-shadow: 2px 2px 15px;
+}
+#del{
+	display: none;
+	position: absolute;
+	top: 95%;
+	height: 30px;
+	width: 80px;
 }
 .icon-user-camera{
 	display: block;

@@ -3,6 +3,7 @@ var context = canvas.getContext('2d');
 
 var video = document.getElementById('video');
 var appear_video=document.getElementById('appear_video');
+var shift=document.getElementById('shift');
 
 var relay_photo=document.getElementById('relay_photo');
 var relay_btn=document.getElementById('relay_btn');
@@ -78,33 +79,41 @@ var start_frame=document.getElementById("start_frame");
 var end_frame=document.getElementById("end_frame");
 
 var media={ video:{facingMode: { exact: "environment" }}};
-//var media={ video:true};
+
 connectMachine(media);
 
 
-//访问用户媒体设备的兼容方法
-//成功的回调函数
-// function success(stream){
-//     //兼容webkit内核浏览器
-//     var CompatibleURL = window.URL || window.webkitURL;
-//     //将视频流设置为video元素的源
-// 	appear_video.src = CompatibleURL.createObjectURL(stream);
-// 	video.src = CompatibleURL.createObjectURL(stream);
-//     //播放视频
-//     //video.play();
-// }
 
+shift.onclick=function(){
+	if(media.video==true){
+		media={ video:{facingMode: { exact: "environment" }}};
+	}else{
+		media={ video:true};
+	}
+	
+};
 
 document.onkeyup = function (e) {//按键信息对象以函数参数的形式传递进来了，就是那个e
     var code = e.charCode || e.keyCode;  //取出按键信息中的按键代码(大部分浏览器通过keyCode属性获取按键代码，但少部分浏览器使用的却是charCode)
     if (code == 13) {
         //此处编写用户敲回车后的代码
+	if (getStyle(image_div,"display")=="block") {
+		image_div.style.display='none';
+		appear_video.style.display="block";
+	}
         catch_image();
     }
 }
 
 photo.addEventListener("click", function() {
-	catch_image();
+	if (getStyle(image_div,"display")=="block") {
+		image_div.style.display='none';
+		appear_video.style.display="block";
+	}else{
+		catch_image();
+	}
+
+	
 });
 
 input_num.oninput=function(){
@@ -123,13 +132,44 @@ cancel_range_num_btn.onclick=function(){
 // 	modal.style.display='none';
 // };
 del_btn.onclick=function(){
-	var id=this.getAttribute('del-src');
-	var del_frame=document.getElementById(id);
-	queue.removeChild(del_frame);
-	var str=del_frame;
-	photos=del_ele_in_array(photos,str);
+	var delImages=document.getElementsByClassName("delete");
+	var ids=[];
+	for(var i=0, len=delImages.length; i<len; i++){
+		// try{queue.removeChild(delImages[i]);}
+		// catch{console.log(delImages[i]);}
+		var id=delImages[i].getAttribute('id');
+		ids.push(id);
+		// console.log(id);
+		// var del_frame=document.getElementById(id);
+
+		// queue.removeChild(del_frame);
+		// var str=del_frame;
+		// photos=del_ele_in_array(photos,str);
+	}
+	for(var j=0, len2=ids.length; j<len2; j++){
+		// try{queue.removeChild(delImages[i]);}
+		// catch{console.log(delImages[i]);}
+		var id=ids[j];
+		var del_frame=document.getElementById(id);
+		queue.removeChild(del_frame);
+		var str=del_frame;
+		photos=del_ele_in_array(photos,str);
+
+		// console.log(id);
+		// var del_frame=document.getElementById(id);
+
+		// queue.removeChild(del_frame);
+		// var str=del_frame;
+		// photos=del_ele_in_array(photos,str);
+	}
+	// var id=this.getAttribute('del-src');
+	// var del_frame=document.getElementById(id);
+	// queue.removeChild(del_frame);
+	// var str=del_frame;
+	// photos=del_ele_in_array(photos,str);
+
 	current_page.innerHTML=photos.length;
-	modal.style.display='none';
+	del_btn.style.display='none';
 };
 
 relay_photo.onclick=function(){
@@ -237,15 +277,29 @@ function catch_image(){
 	var id=Math.random();
 	img.setAttribute("id",id);
 	img.onclick=function(){
-		var frame=document.getElementById("frame");
-		frame.innerHTML='';
+		// var frame=document.getElementById("frame");
+		// frame.innerHTML='';
 		var frame_img=document.createElement("img");
 		frame_img.setAttribute('src',this.getAttribute('src'));
-		frame.appendChild(frame_img);
-		//modal.style.display='block';
-		
+		//frame.appendChild(frame_img);
+		var x=this.offsetLeft;
+		//var y=this.offsetTop+380;
+		image_div.style.display='block';
+		appear_video.style.display="none";
 		del_btn.setAttribute('del-src',this.id);
+		del_btn.style.display="block";
+		//del_btn.style.position="absolute";
+		del_btn.style.left=x.toString()+"px";
+		//del_btn.style.top=y.toString()+"px";
 
+		
+		if(getStyle(this,"borderStyle")=="none"){
+			this.style.border="2px solid red";
+			this.classList.add("delete");
+		}else{
+			this.classList.add("delete");
+			this.style.borderStyle="none";
+		}
 		image_div.setAttribute('src',this.getAttribute('src'));
 	}
 
@@ -578,4 +632,15 @@ function connectMachine(media){
   }
 }
 
-//连接摄像头
+function getStyle(ele,name){
+    if(ele.style.styleFloat){
+        return ele.style.styleFloat;   //ie下float处理
+    }else if(ele.style.cssFloat){
+        return ele.style.cssFloat;     //火狐等float处理
+    }
+    if (ele.currentStyle) {
+        return ele.currentStyle[name];
+    } else {
+        return getComputedStyle(ele, false)[name];
+    }
+}
