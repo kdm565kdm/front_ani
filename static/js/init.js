@@ -58,8 +58,9 @@ const octx=output.getContext("2d");
 
 //删除帧的弹出框按钮
 var del_btn=document.getElementById('del');
-var cancel_btn=document.getElementById('cancel');
-var modal = document.getElementById('modal');
+var copy=document.getElementById('copy');
+//var cancel_btn=document.getElementById('cancel');
+//var modal = document.getElementById('modal');
 
 var global_width=0;
 var global_height=0;
@@ -139,28 +140,16 @@ del_btn.onclick=function(){
 		// catch{console.log(delImages[i]);}
 		var id=delImages[i].getAttribute('id');
 		ids.push(id);
-		// console.log(id);
-		// var del_frame=document.getElementById(id);
 
-		// queue.removeChild(del_frame);
-		// var str=del_frame;
-		// photos=del_ele_in_array(photos,str);
 	}
 	for(var j=0, len2=ids.length; j<len2; j++){
-		// try{queue.removeChild(delImages[i]);}
-		// catch{console.log(delImages[i]);}
+
 		var id=ids[j];
 		var del_frame=document.getElementById(id);
 		queue.removeChild(del_frame);
 		var str=del_frame;
 		photos=del_ele_in_array(photos,str);
 
-		// console.log(id);
-		// var del_frame=document.getElementById(id);
-
-		// queue.removeChild(del_frame);
-		// var str=del_frame;
-		// photos=del_ele_in_array(photos,str);
 	}
 	// var id=this.getAttribute('del-src');
 	// var del_frame=document.getElementById(id);
@@ -173,9 +162,24 @@ del_btn.onclick=function(){
 		image_div.style.display='none';
 		appear_video.style.display="block";
 	}
-	del_btn.style.display='none';
+	current_page.innerHTML=photos.length;
+	xml.sequence.totalFrames=photos.length;
 };
+copy.onclick=function(){
+	var copyImages=document.getElementsByClassName("delete");
+	for(var i=0, len=copyImages.length; i<len; i++){
+		var src=copyImages[i].getAttribute("src");
+		var img = document.createElement("img");
+		img.setAttribute("src",src);
+		var id=Math.random();
+		img.setAttribute("id",id);
+		queue.appendChild(img);
+		photos.push(img);
 
+	}
+	current_page.innerHTML=photos.length;
+	xml.sequence.totalFrames=photos.length;
+};
 relay_photo.onclick=function(){
 	relay_div.style.display='block';
 };
@@ -286,14 +290,14 @@ function catch_image(){
 		var frame_img=document.createElement("img");
 		frame_img.setAttribute('src',this.getAttribute('src'));
 		//frame.appendChild(frame_img);
-		var x=this.offsetLeft;
+		//var x=this.offsetLeft;
 		//var y=this.offsetTop+380;
 		image_div.style.display='block';
 		appear_video.style.display="none";
 		del_btn.setAttribute('del-src',this.id);
 		del_btn.style.display="block";
 		//del_btn.style.position="absolute";
-		del_btn.style.left=x.toString()+"px";
+		//del_btn.style.left=x.toString()+"px";
 		//del_btn.style.top=y.toString()+"px";
 
 		

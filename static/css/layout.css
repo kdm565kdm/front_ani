@@ -110,9 +110,18 @@ body{
 	box-shadow: 2px 2px 15px;
 }
 #del{
-	display: none;
+
 	position: absolute;
 	top: 95%;
+	left: 0%;
+	height: 30px;
+	width: 80px;
+}
+#copy{
+	background: blue;
+	position: absolute;
+	top: 95%;
+	left: 60%;
 	height: 30px;
 	width: 80px;
 }
