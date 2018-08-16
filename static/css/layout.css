@@ -403,7 +403,7 @@ audio{
 		width: 50px;
 		margin-top: 6px;
 
-		font-size: 0.5em;
+		font-size: 10px;
 		text-align: left;
 		border: 1px solid #000;
 		border-radius: 10px 10px;
@@ -430,7 +430,7 @@ audio{
 		width: 50px;
 		border: 1px solid black;
 		border-radius: 10px 10px;
-		font-size: 0.5em;
+		font-size: 10px;
 		background: -webkit-linear-gradient(rgb(231,231,231), rgb(167,167,167)); /* Safari 5.1 - 6.0 */
 		background: -o-linear-gradient(rgb(231,231,231), rgb(167,167,167)); /* Opera 11.1 - 12.0 */
 		background: -moz-linear-gradient(rgb(231,231,231), rgb(167,167,167)); /* Firefox 3.6 - 15 */
