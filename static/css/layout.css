@@ -472,4 +472,30 @@ audio{
 	#left-side ul li{
 		list-style:none;
 	}
+#queue{
+	z-index: 1;
+	position: fixed;
+	bottom: 0px;
+	width: 93%;
+	height: 75px;
+	overflow-y:hidden;
+    overflow-x:auto;
+    white-space: nowrap;
+	margin-top: 15px;
+	background: -webkit-linear-gradient(rgb(231,231,231), rgb(167,167,167)); /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(rgb(231,231,231), rgb(167,167,167)); /* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(rgb(231,231,231), rgb(167,167,167)); /* Firefox 3.6 - 15 */
+	background: linear-gradient(rgb(231,231,231), rgb(167,167,167)); /* 标准的语法 */
+	border-radius: 10px 10px;
+	box-shadow: 3px 3px 10px #444;
+}
+#queue img{
+	display: inline-table;
+  	vertical-align: top;
+	width: 10%;
+	margin-top: 3%;
+	margin-left: 10px;
+	border-radius: 10px 10px;
+	box-shadow: 3px 3px 10px #444;
+}
  }
