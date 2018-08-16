@@ -79,6 +79,7 @@ var audio_cancel=document.getElementById("audio_cancel");
 var start_frame=document.getElementById("start_frame");
 var end_frame=document.getElementById("end_frame");
 
+var voice=document.getElementById("voice");
 var media={ video:{facingMode: { exact: "environment" }}};
 var shift_f_b=false;
 var conduct=document.getElementById("conduct");
@@ -132,8 +133,11 @@ document.onkeyup = function (e) {//按键信息对象以函数参数的形式传
 	if (getStyle(image_div,"display")=="block") {
 		image_div.style.display='none';
 		appear_video.style.display="block";
-	}
+	}else{
+		voice.play();
         catch_image();
+	}
+
     }
 }
 
@@ -142,6 +146,7 @@ photo.addEventListener("click", function() {
 		image_div.style.display='none';
 		appear_video.style.display="block";
 	}else{
+		voice.play();
 		catch_image();
 	}
 
