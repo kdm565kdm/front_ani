@@ -1,13 +1,19 @@
 body{
 	background-color:rgb(204,204,204);
 }
-#outer{
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+#conduct{
+	display: none;
 
+}
+#conduct{
+	text-align: center;
+	vertical-align: middle;
+	font-size: 50px;
+}
+#conduct p{
+	color: white;
+	position: relative;
+	top: 30%;
 }
 #container{
 	display:flex;
@@ -381,6 +387,10 @@ audio{
 
 }
 @media (max-width: 768px) {
+	#conduct{
+		display: block;
+
+	}
 	.btn{
 		background: -webkit-linear-gradient(left top,rgb(255,152,0), rgb(248,139,0)); /* Safari 5.1 - 6.0 */
 		background: -o-linear-gradient(bottom right,rgb(255,152,0), rgb(248,139,0)); /* Opera 11.1 - 12.0 */
