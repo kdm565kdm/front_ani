@@ -386,7 +386,7 @@ audio{
 	display: none;
 
 }
-@media (max-width: 768px) {
+/*@media (max-width: 768px) {
 	#conduct{
 		display: block;
 
@@ -472,4 +472,4 @@ audio{
 	#left-side ul li{
 		list-style:none;
 	}
- }
+ }*/
