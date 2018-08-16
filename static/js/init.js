@@ -115,8 +115,10 @@ conduct.onclick=function(){
 shift.onclick=function(){
 	if(media.video==true){
 		media={ video:{facingMode: { exact: "environment" }}};
+		connectMachine(media);
 	}else{
 		media={ video:true};
+		connectMachine(media);
 	}
 	
 };
