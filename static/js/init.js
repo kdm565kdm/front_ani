@@ -80,7 +80,7 @@ var start_frame=document.getElementById("start_frame");
 var end_frame=document.getElementById("end_frame");
 
 var media={ video:{facingMode: { exact: "environment" }}};
-
+var shift_f_b=false;
 var conduct=document.getElementById("conduct");
 // const evt = "onorientationchange" in window ? "orientationchange" : "resize";
 // window.addEventListener(evt, function () {
@@ -113,11 +113,13 @@ conduct.onclick=function(){
 };
 
 shift.onclick=function(){
-	if(media.video==true){
+	if(shift_f_b==true){
 		media={ video:{facingMode: { exact: "environment" }}};
+		shift_f_b=false;
 		connectMachine(media);
 	}else{
-		media={ video:true};
+		media={video:{ 'facingMode': "user" }};
+		shift_f_b=true;
 		connectMachine(media);
 	}
 	
