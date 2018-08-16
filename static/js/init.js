@@ -81,6 +81,31 @@ var end_frame=document.getElementById("end_frame");
 
 var media={ video:{facingMode: { exact: "environment" }}};
 
+
+const evt = "onorientationchange" in window ? "orientationchange" : "resize";
+window.addEventListener(evt, function () {
+const width = document.documentElement.clientWidth;
+const height = document.documentElement.clientHeight;
+const contentDOM = document.getElementById('outer');
+// alert('width: ' + width + ' height: ' + height)
+if (width > height) { // 横屏
+  contentDOM.style.width = width + 'px';
+  contentDOM.style.height = height + 'px';
+  contentDOM.style.top = '0px';
+  contentDOM.style.left = '0px';
+  contentDOM.style.transform = 'none';
+}
+else { // 竖屏，这里微信应该由bug，我切换为竖屏的时候，width:375, height: 323, 导致不能旋转角度。 在safari、chrome上是正确的。
+  console.log('change to portrait')
+  contentDOM.style.width = height + 'px';
+  contentDOM.style.height = width + 'px';
+  contentDOM.style.top = (height - width) / 2 + 'px';
+  contentDOM.style.left = 0 - (height - width) / 2 + 'px';
+  contentDOM.style.transform = 'rotate(90deg)';
+}
+
+}, false);
+
 connectMachine(media);
 
 

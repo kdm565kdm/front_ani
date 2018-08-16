@@ -12,6 +12,7 @@
 
 <body>
 <audio controls autoplay></audio> 
+<div id="outer">
 <div id="container">
     <br>
     <br>
@@ -22,8 +23,8 @@
 			<p>当前帧数：<span id='current_page'>0</span></p>
 		</div>
 		<ul>
-			<li><button class='btn' id="del">删除</button></li>
-			<li><button class='btn' id="copy">复制</button></li>
+<!-- 			<li><button class='btn' id="del">删除</button></li>
+			<li><button class='btn' id="copy">复制</button></li> -->
 			<li><button class='btn' id="shift">切换</button></li>
 			<li><button class='btn' id="zip">打包</button></li>	
 			<li><button class="btn" id="audio">录音</button></li>
@@ -69,8 +70,11 @@
 
 
 </div>
-<div id="queue">
 
+<div id="queue">
+	<button class='btn' id="del">删除</button>
+	<button class='btn' id="copy">复制</button>
+</div>
 </div>
 <!--frame div-->
 <!-- <div id="modal" class="modal">

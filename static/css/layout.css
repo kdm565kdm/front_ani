@@ -1,6 +1,14 @@
 body{
 	background-color:rgb(204,204,204);
 }
+#outer{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+
+}
 #container{
 	display:flex;
 	flex-direction:column;
@@ -112,7 +120,7 @@ body{
 #del{
 
 	position: absolute;
-	top: 95%;
+	top: -10%;
 	left: 0%;
 	height: 30px;
 	width: 80px;
@@ -120,8 +128,8 @@ body{
 #copy{
 	background: blue;
 	position: absolute;
-	top: 95%;
-	left: 60%;
+	top: -10%;
+	left: 8%;
 	height: 30px;
 	width: 80px;
 }
@@ -265,7 +273,7 @@ input[type=range]::-webkit-slider-thumb {
 	display: inline-table;
   	vertical-align: top;
 	width: 10%;
-	margin-top: 8px;
+	margin-top: 3%;
 	margin-left: 10px;
 	border-radius: 10px 10px;
 	box-shadow: 3px 3px 10px #444;
@@ -372,3 +380,86 @@ audio{
 	display: none;
 
 }
+@media (max-width: 768px) {
+	.btn{
+		background: -webkit-linear-gradient(left top,rgb(255,152,0), rgb(248,139,0)); /* Safari 5.1 - 6.0 */
+		background: -o-linear-gradient(bottom right,rgb(255,152,0), rgb(248,139,0)); /* Opera 11.1 - 12.0 */
+		background: -moz-linear-gradient(bottom right,rgb(255,152,0), rgb(248,139,0)); /* Firefox 3.6 - 15 */
+		background: linear-gradient(bottom right,rgb(255,152,0), rgb(248,139,0)); /* 标准的语法 */
+		display:block;
+		z-index: 99;
+
+		height: 38px;
+		width: 50px;
+		margin-top: 6px;
+
+		font-size: 1px;
+		text-align: left;
+		border: 1px solid #000;
+		border-radius: 10px 10px;
+		box-shadow: 2px 2px 15px;
+	}
+	#del{
+
+		position: absolute;
+		top: -10%;
+		left: 0%;
+		height: 30px;
+		width: 50px;
+	}
+	#copy{
+		background: blue;
+		position: absolute;
+		top: -10%;
+		left: 8%;
+		height: 30px;
+		width: 50px;
+	}
+
+	.pages{
+		width: 50px;
+		border: 1px solid black;
+		border-radius: 10px 10px;
+		font-size: 2px;
+		background: -webkit-linear-gradient(rgb(231,231,231), rgb(167,167,167)); /* Safari 5.1 - 6.0 */
+		background: -o-linear-gradient(rgb(231,231,231), rgb(167,167,167)); /* Opera 11.1 - 12.0 */
+		background: -moz-linear-gradient(rgb(231,231,231), rgb(167,167,167)); /* Firefox 3.6 - 15 */
+		background: linear-gradient(rgb(231,231,231), rgb(167,167,167)); /* 标准的语法 */ 
+	}
+	#appear_video{
+		position: absolute;
+		left: 20%;
+		top: 5%;
+		width: 50%;
+	}
+	#image{
+		display: none;
+		width: 50%;
+		height: 65%;
+		border-radius: 10px 10px;
+		position: absolute;
+		top: 5%;
+		left: 20%;
+	}
+
+	#right-side ul{
+		width: 50px; height: 400px; 
+		float: left;
+		list-style:none;
+		padding:  0 0 0 0;
+		margin: 0 0 0 0;
+		overflow-x:hidden;
+		overflow-y:scroll;
+	}
+	#left-side{
+		position: fixed;
+		top: -15%;
+		left: 3%;
+	}
+	#left-side ul{
+		margin-left: -30%;
+	}
+	#left-side ul li{
+		list-style:none;
+	}
+ }
