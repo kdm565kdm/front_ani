@@ -13,6 +13,7 @@
 <body>
 <audio controls autoplay></audio> 
 <audio id="voice" src="catch.wav"></audio> 
+<audio id="voice_finished" src="catch.wav"></audio> 
 <div id="container">
     <br>
     <br>
@@ -20,7 +21,7 @@
     <div id="left-side">
 		<div class="thumb" id="frame"></div>
 		<div class="pages">
-			<p>当前帧数：<span id='current_page'>0</span></p>
+			<p>总帧数：<span id='current_page'>0</span></p>
 		</div>
 		<ul>
 <!-- 			<li><button class='btn' id="del">删除</button></li>
@@ -29,6 +30,8 @@
 			<li><button class="btn" id="audio">录音</button></li>
 			<li><button class="btn" id="stop_audio">停止</button></li>
 			<li><button class='btn' id="zip">打包</button></li>
+			<button class='btn' id="del">删除</button>
+			<button class='btn' id="copy">复制</button>
 		</ul>
 
     </div>
@@ -44,7 +47,7 @@
 			<li><button id="relay_photo" class='btn'>延时摄影</button></li>
 			<li><button id="play" class='btn'>播放</button></li>
 			<li><button id="set_cover" class='btn'>翻翻书</button></li>
-			
+
 		</ul>
 				
 		
@@ -56,7 +59,6 @@
 		
 	<video id="video" autoplay  style='width:1280px;height:720px'></video>
 			<video  id="appear_video" autoplay></video>
-			
 		</div>
 		<div>
 
@@ -72,8 +74,7 @@
 </div>
 
 <div id="queue">
-	<button class='btn' id="del">删除</button>
-	<button class='btn' id="copy">复制</button>
+
 </div>
 <!--set_frame div-->
 <div id="modal_set_frame" class="modal">

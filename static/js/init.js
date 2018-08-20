@@ -80,6 +80,7 @@ var start_frame=document.getElementById("start_frame");
 var end_frame=document.getElementById("end_frame");
 
 var voice=document.getElementById("voice");
+var voice_finished=document.getElementById("voice_finished");
 var media={ video:{facingMode: { exact: "environment" }}};
 var shift_f_b=false;
 var conduct=document.getElementById("conduct");
@@ -136,6 +137,7 @@ document.onkeyup = function (e) {//按键信息对象以函数参数的形式传
 	}else{
 		voice.play();
         catch_image();
+        //voice_finished.play();
 	}
 
     }
@@ -148,6 +150,7 @@ photo.addEventListener("click", function() {
 	}else{
 		voice.play();
 		catch_image();
+		//voice_finished.play();
 	}
 
 	
@@ -209,6 +212,27 @@ copy.onclick=function(){
 		img.setAttribute("src",src);
 		var id=Math.random();
 		img.setAttribute("id",id);
+		img.onclick=function(){
+
+			var frame_img=document.createElement("img");
+			frame_img.setAttribute('src',this.getAttribute('src'));
+
+			image_div.style.display='block';
+			appear_video.style.display="none";
+			del_btn.setAttribute('del-src',this.id);
+			del_btn.style.display="block";
+
+
+			
+			if(getStyle(this,"borderStyle")=="none"){
+				this.style.border="2px solid red";
+				this.classList.add("delete");
+			}else{
+				this.classList.add("delete");
+				this.style.borderStyle="none";
+			}
+			image_div.setAttribute('src',this.getAttribute('src'));
+		}
 		queue.appendChild(img);
 		photos.push(img);
 
